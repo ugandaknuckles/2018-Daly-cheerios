@@ -1,27 +1,20 @@
 #include<iostream>
-#include<fstream>
-#include<string>
+#include<allegro5/allegro.h>
+#include<allegro5\allegro_primitives.h>
 using namespace std;
-int main() {
 
-	string line;
-	ofstream myfile("duck.txt");
-	myfile << "your ducks are \"bad\" good " << endl;
-	myfile << "your ducks are nice" << endl;
-	myfile.close();
-	ifstream myfile1("duck.txt");
-	int input;
-	cin >> input;
-	if (myfile1.is_open()) 
-	{ 
-		while (getline(myfile1, line))
-		{
-	for (int i = 0; i < input; i++)
-		cout << line << endl;
-		}
-		myfile1.close();
+int main() {
+	srand(time(NULL));
+	al_init();
+	al_init_primitives_addon();
+	ALLEGRO_DISPLAY *display = al_create_display(800, 800);
+
+	while (1) {
+		al_draw_filled_circle(rand()%800, rand()%800, rand()%200, al_map_rgb(rand()%256, 0,rand()%256));
+		al_rest(.02);
+		al_flip_display();
 	}
-	else
-		cout << "unableto open file";
-	system("pause");
+
+	al_destroy_display(display);
+
 }
