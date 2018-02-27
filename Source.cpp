@@ -1,25 +1,27 @@
-#include <iostream>
+#include<iostream>
+#include<fstream>
+#include<string>
 using namespace std;
+int main() {
 
-int main()
-{
-	int rows;
-	int slope = 0;
-
-	cout << "Enter number of rows ";
-	cin >> rows;
-
-	for (int i = 1; i <= rows; ++i)
-	{
-		for (int j = 1; j <= rows - i; ++j) {
-			cout << " ";
+	string line;
+	ofstream myfile("duck.txt");
+	myfile << "your ducks are \"bad\" good " << endl;
+	myfile << "your ducks are nice" << endl;
+	myfile.close();
+	ifstream myfile1("duck.txt");
+	int input;
+	cin >> input;
+	if (myfile1.is_open()) 
+	{ 
+		while (getline(myfile1, line))
+		{
+	for (int i = 0; i < input; i++)
+		cout << line << endl;
 		}
-		for (int j =1; j<= i +slope; j++){
-			cout << "*";
-		}
-		cout << "\n";
-		slope += 1;
+		myfile1.close();
 	}
-
-	
+	else
+		cout << "unableto open file";
+	system("pause");
 }
